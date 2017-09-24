@@ -6,6 +6,7 @@
 \usepackage{tikz}
 \usepackage{bm}
 \usepackage{minted}
+\usepackage{graphicx}
 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
             \node[shape=circle, draw, inner sep=0.8pt] (char) {#1};}}
@@ -296,8 +297,124 @@ The goal of the task is to provide a common framework for evaluation of informat
 
 \begin{alertblock}{Methods}
 
+\begin{itemize}
+\item S. K. Sahu and A. Anand, \textbf{“Drug-drug interaction extraction from biomedical text using long short term memory network.”} arXiv preprint arXiv:1701.08303, 2017.
+\item Z. Zhao, Z. Yang, L. Luo, H. Lin, and J. Wang, \textbf{“Drug drug interaction extraction from biomedical literature using syntax convolutional neural network.”} Bioinformatics, vol. 32, no. 22, pp. 3444–3453, 2016.
+\end{itemize}
 \end{alertblock}
+\end{frame}
 
+\section{Drug-drug interaction extraction from biomedical text using long short term memory network}
+\subsection{Drug-drug interaction extraction from biomedical text ...}
+
+\begin{frame}{\insertsubsection}
+
+\begin{exampleblock}{Preprocessing}
+\begin{itemize}
+\item Tokenization
+	\begin{itemize}
+		\item Genia Tagger
+		\item All digits $\to$ DG
+		\item All letters $\to$ lowercase
+	\end{itemize}
+\item Targeted drug names are replaced with \underline{DRUG-A} and \underline{DRUG-B}, other drug names are replaced with \underline{DRUG-N}.
+\end{itemize}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{\insertsubsection}
+
+\begin{exampleblock}{Negative Instance Filtering}
+\begin{itemize}
+\item Remove instances whose targeted drug names are the same as each other. We assume that a drug doesn't interact with itself.
+\item Remove negative samples based on some grammatical patterns:
+	\begin{itemize}
+		\item DRUG-A (DRUG-B)
+		\item DRUG-A such as DRUG-B
+		\item DRUG-A $\text{(DRUG-N)}^+$ DRUG-B
+		\item etc.
+	\end{itemize}
+\end{itemize}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{\insertsubsection}
+
+\begin{exampleblock}{Negative Instance Filtering}
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.35]{table1.png}
+\end{figure}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{\insertsubsection}
+
+\begin{exampleblock}{Presented Models}
+
+\begin{itemize}
+\item B-LSTM, B for Bidirectinal
+\item AB-LSTM, A for Attentive
+\item Joint AB-LSTM
+\end{itemize}
+
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}{\insertsubsection}
+
+\begin{exampleblock}{B-LSTM}
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.255]{fig1.png}
+\end{figure}
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}{\insertsubsection}
+
+\begin{exampleblock}{AB-LSTM}
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.27]{fig2.png}
+\end{figure}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{\insertsubsection}
+
+\begin{exampleblock}{Joint AB-LSTM}
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.195]{fig3.png}
+\end{figure}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{\insertsubsection}
+
+\begin{exampleblock}{Performance}
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.30]{fig4.png}
+\end{figure}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\Huge \calligra Fin.
+\end{center}
 \end{frame}
 
 
